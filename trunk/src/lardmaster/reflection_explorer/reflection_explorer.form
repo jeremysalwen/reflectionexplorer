@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="lardmaster.reflection_explorer.reflection_explorer">
+  <grid id="27dc6" binding="panel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <splitpane id="a24c4">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <resizeWeight value="0.1"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <scrollpane id="a50e9">
+            <constraints>
+              <splitpane position="left"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="d0a31" class="javax.swing.JTree" binding="selectFieldTree" custom-create="true" default-binding="true">
+                <constraints/>
+                <properties>
+                  <rootVisible value="true"/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
+          <splitpane id="dfccd">
+            <constraints>
+              <splitpane position="right"/>
+            </constraints>
+            <properties>
+              <orientation value="0"/>
+              <resizeWeight value="0.9"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <scrollpane id="515cd">
+                <constraints>
+                  <splitpane position="left"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="64dc9" class="javax.swing.JTextPane" binding="valueTextPane" default-binding="true">
+                    <constraints/>
+                    <properties>
+                      <editable value="false"/>
+                      <text value="Value"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
+              <scrollpane id="7cb0d">
+                <constraints>
+                  <splitpane position="right"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="6df77" class="javax.swing.JTextArea" binding="TypeTextArea">
+                    <constraints/>
+                    <properties>
+                      <editable value="false"/>
+                      <lineWrap value="false"/>
+                      <text value="Type"/>
+                      <toolTipText value="The type of the currently selected field"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
+            </children>
+          </splitpane>
+        </children>
+      </splitpane>
+      <toolbar id="717a3">
+        <constraints border-constraint="North"/>
+        <properties>
+          <floatable value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="cec96" class="javax.swing.JCheckBox" binding="automaticToStringCallsCheckBox" default-binding="true">
+            <constraints/>
+            <properties>
+              <hideActionText value="false"/>
+              <horizontalAlignment value="4"/>
+              <horizontalTextPosition value="4"/>
+              <text value="&amp;Automatic toString Calls"/>
+              <toolTipText value="If enabled, could possible tip off inspected classes"/>
+            </properties>
+          </component>
+          <component id="5eba8" class="javax.swing.JButton" binding="callToStringOnSelectedButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <text value="Call toString on selected object"/>
+            </properties>
+          </component>
+        </children>
+      </toolbar>
+    </children>
+  </grid>
+</form>
