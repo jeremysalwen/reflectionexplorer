@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="lardmaster.reflection_explorer.reflection_explorer">
   <grid id="27dc6" binding="panel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="652" height="387"/>
+      <xy x="20" y="20" width="665" height="387"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -24,7 +24,8 @@
               <component id="d0a31" class="javax.swing.JTree" binding="selectFieldTree" custom-create="true" default-binding="true">
                 <constraints/>
                 <properties>
-                  <rootVisible value="true"/>
+                  <rootVisible value="false"/>
+                  <showsRootHandles value="true"/>
                 </properties>
               </component>
             </children>
@@ -84,26 +85,29 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="80eb5" class="javax.swing.JFormattedTextField" binding="ClassSelectionFormattedTextField">
+          <component id="d546b" class="javax.swing.JTextField" binding="ClassSelectionFormattedTextField">
             <constraints/>
             <properties>
               <text value="java.lang.Integer"/>
             </properties>
           </component>
-          <component id="56bd2" class="javax.swing.JButton" binding="setInspectedClassButton" default-binding="true">
+          <component id="56bd2" class="javax.swing.JButton" binding="addButton">
             <constraints/>
             <properties>
-              <text value="&amp;Set inspected class"/>
+              <text value="&amp;Add"/>
             </properties>
           </component>
-          <component id="cec96" class="javax.swing.JCheckBox" binding="automaticToStringCallsCheckBox" default-binding="true">
+          <component id="f0156" class="javax.swing.JRadioButton" binding="classSToStringRadioButton" default-binding="true">
             <constraints/>
             <properties>
-              <hideActionText value="false"/>
-              <horizontalAlignment value="4"/>
-              <horizontalTextPosition value="4"/>
-              <text value="&amp;Automatic toString Calls"/>
-              <toolTipText value="If enabled, could possible tip off inspected classes"/>
+              <text value="Class's &amp;ToString"/>
+            </properties>
+          </component>
+          <component id="96034" class="javax.swing.JRadioButton" binding="generatedToStringRadioButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <selected value="true"/>
+              <text value="&amp;Generated toString"/>
             </properties>
           </component>
           <component id="5eba8" class="javax.swing.JButton" binding="callToStringOnSelectedButton" default-binding="true">
@@ -116,4 +120,10 @@
       </toolbar>
     </children>
   </grid>
+  <buttonGroups>
+    <group name="ToString Type">
+      <member id="f0156"/>
+      <member id="96034"/>
+    </group>
+  </buttonGroups>
 </form>
