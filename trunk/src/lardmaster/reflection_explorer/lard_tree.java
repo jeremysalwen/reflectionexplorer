@@ -1,11 +1,7 @@
 package lardmaster.reflection_explorer;
 
 import javax.swing.*;
-import javax.swing.tree.TreeNode;
-import javax.swing.tree.TreeModel;
 import java.lang.reflect.Field;
-import java.util.Vector;
-import java.util.Hashtable;
 
 /**
  * Created by IntelliJ IDEA.
@@ -28,31 +24,10 @@ public class lard_tree extends JTree {
             return value.toString();
         }
     }
-
-    public lard_tree() {
+    public void add_base_object(Object o) {
+        ((lard_tree_model)treeModel).add_base_object(o);
     }
-
-    public lard_tree(Object[] value) {
-        super(value);
-    }
-
-    public lard_tree(Vector<?> value) {
-        super(value);
-    }
-
-    public lard_tree(Hashtable<?, ?> value) {
-        super(value);
-    }
-
-    public lard_tree(TreeNode root) {
-        super(root);
-    }
-
-    public lard_tree(TreeNode root, boolean asksAllowsChildren) {
-        super(root, asksAllowsChildren);
-    }
-
-    public lard_tree(TreeModel newModel) {
+    public lard_tree(lard_tree_model newModel) {
         super(newModel);
     }
 }

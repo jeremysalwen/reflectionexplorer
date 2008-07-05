@@ -1,10 +1,14 @@
 package lardmaster.reflection_explorer;
 
+import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Vector;
 
 /**
  * Created by IntelliJ IDEA.
@@ -14,10 +18,11 @@ import java.util.ArrayList;
  * To change this template use File | Settings | File Templates.
  */
 public class lard_tree_model implements TreeModel {
-    Object root;  //could be a Class, Field, or Object
+    Vector root;  //could be a Class, Field, or Object
 
-    public lard_tree_model(Object o) {
-        root = o;
+    public lard_tree_model(Object base) {
+        root = new Vector();
+        root.add(base);
     }
 
     public Object getRoot() {
@@ -40,22 +45,36 @@ public class lard_tree_model implements TreeModel {
         for (Class c = get_node_class(node); c != null; c = c.getSuperclass()) {
             fields.ensureCapacity(fields.size() + c.getDeclaredFields().length);
             for (Field f : c.getDeclaredFields()) {
-                fields.add(f);
+                if (!(Modifier.isStatic(f.getModifiers()) ^ node instanceof Class)) {
+                    fields.add(f);
+                }
             }
         }
-        Field[] result=new Field[fields.size()];
+        Field[] result = new Field[fields.size()];
         fields.toArray(result);
         return result;
     }
 
     public Object getChild(Object parent, int index) {
+        if (parent instanceof Vector) {
+            System.out.println("getting child " + index);
+            return ((Vector) parent).get(index);
+        }
         return get_node_fields(parent)[index];
     }
 
     public int getChildCount(Object parent) {
+        if (parent instanceof Vector) {
+            System.out.println("root size is " + ((Vector) parent).size());
+            return ((Vector) parent).size();
+        }
         int total = 0;
         for (Class c = get_node_class(parent); c != null; c = c.getSuperclass()) {
-            total += c.getDeclaredFields().length;
+            for (Field f : c.getDeclaredFields()) {
+                if (!(Modifier.isStatic(f.getModifiers()) ^ parent instanceof Class)) {
+                    total++;
+                }
+            }
         }
         return total;
     }
@@ -73,9 +92,11 @@ public class lard_tree_model implements TreeModel {
         if (parent == null || child == null) {
             return -1;
         }
-        Field parent_to_field = (Field) parent;
+        if (parent instanceof Vector) {
+            return ((Vector) parent).indexOf(child);
+        }
         Field child_to_field = (Field) child;
-        Field[] parent_fields = parent_to_field.getType().getFields();
+        Field[] parent_fields = get_node_fields(parent);
         for (int i = 0; i < parent_fields.length; i++) {
             if (parent_fields[i] == child_to_field) {
                 return i;
@@ -84,9 +105,59 @@ public class lard_tree_model implements TreeModel {
         return -1;
     }
 
-    public void addTreeModelListener(TreeModelListener l) {
+    public void add_base_object(Object o) {
+        if (root.contains(o)) {
+            return;
+        }
+        //root is a Vector
+        root.add(o);
+        // fireTreeNodesInserted(new TreeModelEvent(this, new Object[]{root},new int[] {root.size()}, new Object[] {o}));
+        fireTreeStructureChanged(new TreeModelEvent(this, new Object[]{root}));
     }
 
-    public void removeTreeModelListener(TreeModelListener l) {
+    private Vector<TreeModelListener> vector = new Vector<TreeModelListener>();
+
+    public void addTreeModelListener(TreeModelListener listener) {
+        if (listener != null && !vector.contains(listener)) {
+            vector.addElement(listener);
+        }
+    }
+
+    public void removeTreeModelListener(TreeModelListener listener) {
+        if (listener != null) {
+            vector.removeElement(listener);
+        }
+    }
+
+    public void fireTreeNodesChanged(TreeModelEvent e) {
+        Enumeration<TreeModelListener> listeners = vector.elements();
+        while (listeners.hasMoreElements()) {
+            TreeModelListener listener = listeners.nextElement();
+            listener.treeNodesChanged(e);
+        }
+    }
+
+    public void fireTreeNodesInserted(TreeModelEvent e) {
+        Enumeration<TreeModelListener> listeners = vector.elements();
+        while (listeners.hasMoreElements()) {
+            TreeModelListener listener = listeners.nextElement();
+            listener.treeNodesInserted(e);
+        }
+    }
+
+    public void fireTreeNodesRemoved(TreeModelEvent e) {
+        Enumeration<TreeModelListener> listeners = vector.elements();
+        while (listeners.hasMoreElements()) {
+            TreeModelListener listener = listeners.nextElement();
+            listener.treeNodesRemoved(e);
+        }
+    }
+
+    public void fireTreeStructureChanged(TreeModelEvent e) {
+        Enumeration<TreeModelListener> listeners = vector.elements();
+        while (listeners.hasMoreElements()) {
+            TreeModelListener listener = listeners.nextElement();
+            listener.treeStructureChanged(e);
+        }
     }
 }
