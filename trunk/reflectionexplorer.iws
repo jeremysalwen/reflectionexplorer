@@ -143,7 +143,7 @@
       <file leaf-file-name="reflection_explorer.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/lardmaster/reflection_explorer/reflection_explorer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="61" selection-start="881" selection-end="881" vertical-scroll-proportion="0.4054054">
+            <state line="43" column="4" selection-start="1387" selection-end="1387" vertical-scroll-proportion="0.29565218">
               <folding />
             </state>
           </provider>
@@ -159,7 +159,7 @@
       <file leaf-file-name="lard_tree.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lardmaster/reflection_explorer/lard_tree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="31" selection-start="933" selection-end="933" vertical-scroll-proportion="0.8161351">
+            <state line="30" column="31" selection-start="933" selection-end="933" vertical-scroll-proportion="0.49512196">
               <folding />
             </state>
           </provider>
@@ -168,7 +168,7 @@
       <file leaf-file-name="lard_tree_model.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lardmaster/reflection_explorer/lard_tree_model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="3" selection-start="705" selection-end="705" vertical-scroll-proportion="0.49227798">
+            <state line="25" column="3" selection-start="705" selection-end="705" vertical-scroll-proportion="0.017391304">
               <folding />
             </state>
           </provider>
@@ -355,7 +355,7 @@
       <showLibraryContents />
       <hideEmptyPackages />
       <abbreviatePackageNames />
-      <showStructure Favorites="false" ProjectPane="false" Scope="false" PackagesPane="false" />
+      <showStructure Scope="false" ProjectPane="false" PackagesPane="false" Favorites="false" />
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
@@ -377,38 +377,6 @@
   <component name="RecentsManager" />
   <component name="RestoreUpdateTree" />
   <component name="RunManager" selected="Application.Unnamed">
-    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <module name="" />
-      <method>
-        <option name="Make" value="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -427,6 +395,38 @@
       <method>
         <option name="Make" value="true" />
       </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <module name="" />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
     </configuration>
     <configuration default="false" name="Unnamed" type="Application" factoryName="Application" enabled="false" merge="false">
       <option name="MAIN_CLASS_NAME" value="lardmaster.reflection_explorer.reflection_explorer" />
@@ -553,10 +553,10 @@
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="File View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32951757" order="0" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32924837" order="0" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="2" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39906102" order="6" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3298122" order="2" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298122" order="2" />
       <window_info id="EclipseImporter" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="SVN Repositories" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32982457" order="8" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="5" />
@@ -646,105 +646,28 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///usr/lib/jvm/java-6-sun-1.6.0.06/src.zip!/javax/swing/tree/MutableTreeNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="9" selection-start="1385" selection-end="1385" vertical-scroll-proportion="0.7669903">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-6-sun-1.6.0.06/src.zip!/javax/swing/plaf/basic/BasicTreeUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2546" column="25" selection-start="77873" selection-end="77873" vertical-scroll-proportion="0.342">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-6-sun-1.6.0.06/src.zip!/javax/swing/tree/DefaultTreeModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="296" column="20" selection-start="10413" selection-end="10413" vertical-scroll-proportion="0.682">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-6-sun-1.6.0.06/src.zip!/javax/swing/JTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="525" column="18" selection-start="20276" selection-end="20276" vertical-scroll-proportion="0.5533981">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-6-sun-1.6.0.06/src.zip!/javax/swing/tree/DefaultMutableTreeNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="72" selection-start="285" selection-end="285" vertical-scroll-proportion="-11.594747">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-6-sun-1.6.0.06/jre/lib/rt.jar!/sun/reflect/UnsafeFieldAccessorImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="0" selection-start="4181" selection-end="4181" vertical-scroll-proportion="0.82625484">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-6-sun-1.6.0.06/src.zip!/javax/swing/tree/VariableHeightLayoutCache.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="812" column="29" selection-start="25683" selection-end="25683" vertical-scroll-proportion="0.60600376">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-6-sun-1.6.0.06/src.zip!/java/io/PrintWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="11" selection-start="2256" selection-end="2256" vertical-scroll-proportion="0.33208254">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-6-sun-1.6.0.06/src.zip!/java/io/StringWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="191" column="18" selection-start="5477" selection-end="5477" vertical-scroll-proportion="0.33208254">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lardmaster/reflection_explorer/reflection_explorer.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lardmaster/reflection_explorer/lard_tree_model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="3" selection-start="705" selection-end="705" vertical-scroll-proportion="0.49227798">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lardmaster/reflection_explorer/lard_tree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="31" selection-start="933" selection-end="933" vertical-scroll-proportion="0.8161351">
+        <state line="30" column="31" selection-start="933" selection-end="933" vertical-scroll-proportion="0.49512196">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/lib/jvm/java-6-sun-1.6.0.06/src.zip!/java/util/Vector.java">
+    <entry file="file://$PROJECT_DIR$/src/lardmaster/reflection_explorer/lard_tree_model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="318" column="19" selection-start="11771" selection-end="11771" vertical-scroll-proportion="0.33204633">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-6-sun-1.6.0.06/src.zip!/java/util/Arrays.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2881" column="0" selection-start="111465" selection-end="111465" vertical-scroll-proportion="0.50093806">
+        <state line="25" column="3" selection-start="705" selection-end="705" vertical-scroll-proportion="0.017391304">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lardmaster/reflection_explorer/reflection_explorer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="61" selection-start="881" selection-end="881" vertical-scroll-proportion="0.4054054">
+        <state line="43" column="4" selection-start="1387" selection-end="1387" vertical-scroll-proportion="0.29565218">
           <folding />
         </state>
       </provider>
