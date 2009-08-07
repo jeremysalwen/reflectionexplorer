@@ -63,7 +63,7 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="9b0f6" class="javax.swing.JList" binding="FoundItemsList">
+                      <component id="9b0f6" class="javax.swing.JList" binding="FoundItemsList" custom-create="true">
                         <constraints/>
                         <properties>
                           <model/>
