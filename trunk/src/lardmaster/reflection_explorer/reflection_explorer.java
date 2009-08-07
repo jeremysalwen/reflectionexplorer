@@ -13,9 +13,9 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.Stack;
+import java.lang.reflect.Array;
+import java.util.*;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.net.URL;
@@ -31,7 +31,7 @@ import java.text.ParseException;
  */
 public class reflection_explorer implements TreeSelectionListener, ActionListener, KeyListener {
     public reflection_explorer() {
-        safe_paths=new DefaultListModel();
+        safe_paths = new DefaultListModel();
         safe_paths.addElement("/System/Library/");
         selectFieldTree.addTreeSelectionListener(this);
         menu = new JMenuBar();
@@ -63,6 +63,9 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
         menu.add(settings);
         menu.add(inspected_classes);
 
+        newSearchButton.addActionListener(this);
+        refineSearchButton.addActionListener(this);
+
     }
 
     public static void main(String[] args) throws IllegalAccessException, UnsupportedLookAndFeelException, InstantiationException, ClassNotFoundException {
@@ -90,11 +93,11 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
     private JButton newSearchButton;
     private JList FoundItemsList;
     private JButton refineSearchButton;
-    List<List<Field>> searchResults;
     static Pattern quoted = Pattern.compile("\\\".*\\\"", Pattern.DOTALL);
     private JMenuItem remove_selected;
     private safe_paths_selector safePathsSelector;
     private JMenuItem edit_safe_button;
+    DefaultListModel searchResults;
 
     Object string_to_value(String s) {
         s = s.trim().toLowerCase();
@@ -126,12 +129,12 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
             text = get_generated_tostring(value);
         }
         this.valueTextPane.setText(text);
-        Object lastcomponent=path.getLastPathComponent();
+        Object lastcomponent = path.getLastPathComponent();
         Class type;
-        if(lastcomponent instanceof Field) {
-            type=((Field)lastcomponent).getType();
+        if (lastcomponent instanceof Field) {
+            type = ((Field) lastcomponent).getType();
         } else {
-            type=lastcomponent.getClass();
+            type = lastcomponent.getClass();
         }
         this.TypeTextArea.setText(type.getName());
     }
@@ -167,7 +170,7 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
             loc = loc.substring(5);
         }
         for (Object s : safe_paths.toArray()) {
-            if (loc.startsWith((String)s)) {
+            if (loc.startsWith((String) s)) {
                 return true;
             }
         }
@@ -243,12 +246,14 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
         return type == String.class || type == Integer.class || type == Double.class || type == Long.class || type == Float.class || type == Short.class || type == Character.class || type == Boolean.class || type == Character.class || type.isPrimitive();
     }
 
-    public List<List<Field>> search(Object root, Object value) {
-        return search(root, value, new Stack());
+    public void search(Object value, DefaultListModel out) {
+        Vector bases = ((lard_tree_model) selectFieldTree.getModel()).root;
+        for (int i = 0; i < bases.size(); i++) {
+            search(bases.get(i), value, new Stack(), out, new SearchResult(i, new Stack<Field>()));
+        }
     }
 
-    public List<List<Field>> search(Object root, Object value, Stack parents) {
-        List<List<Field>> results = new ArrayList<List<Field>>();
+    public void search(Object root, Object value, Stack parents, DefaultListModel out, SearchResult parent_history) {
         if (!(root instanceof Class)) {
             root = root.getClass();
         }
@@ -258,21 +263,35 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
                 if (!(Modifier.isStatic(f.getModifiers()) ^ root instanceof Class)) {
                     f.setAccessible(true);
                     try {
+
                         Object checking = f.get(root);
-                        if (is_primitive(checking.getClass())) {
+                        if (checking != null) {
+                            System.out.println(checking.getClass());
+                        }
+                        if (checking == null) {
+                            continue;
+                        }
+                        if(f.getType().isArray()) {
+                          for(int i=0; i< Array.getLength(checking); i++) {
+                              Object 
+                          }
+                        }
+                        if (is_primitive(f.getType())) {
                             if (value.equals(checking)) {
-                                List<Field> result = new ArrayList<Field>();
-                                result.add(f);
-                                results.add(result);
+
+                                SearchResult result = new SearchResult(parent_history.item_number, (Stack<Field>) parent_history.fields.clone());
+                                result.fields.add(f);
+                                out.addElement(result);
                             }
                         } else {
-                            if (parents.contains(checking)) {
-                                continue;
+                            for (Object o : parents) {
+                                if (o == checking) {
+                                    continue;
+                                }
                             }
-                            for (List<Field> l : search(checking, value, parents)) {
-                                l.add(f);
-                                results.add(l);
-                            }
+                            parent_history.fields.add(f);
+                            search(checking, value, parents, out, parent_history);     //This is key!
+                            parent_history.fields.remove(parent_history.fields.size() - 1);
                         }
                     }
                     catch (Exception e) {
@@ -282,14 +301,18 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
             }
         }
         parents.pop();
-        return results;
     }
 
-    private void createUIComponents() {
+    private void createUIComponents
+            () {
         selectFieldTree = new lard_tree(new lard_tree_model(this));
+        searchResults = new DefaultListModel();
+        this.FoundItemsList = new JList(searchResults);
     }
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed
+            (ActionEvent
+                    e) {
         if (e.getSource() == this.addButton) {
             try {
                 ((lard_tree) this.selectFieldTree).add_base_object(Class.forName(JOptionPane.showInputDialog("Enter Class Name")));
@@ -317,7 +340,7 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
             search();
         }
         if (e.getSource() == this.refineSearchButton) {
-            search();
+            refine_search();
         }
         if (e.getSource() == this.remove_selected) {
             int[] selected = this.selectFieldTree.getSelectionRows();
@@ -331,36 +354,51 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
                 }
             }
         }
-        if(e.getSource()==this.edit_safe_button) {
+        if (e.getSource() == this.edit_safe_button) {
             safePathsSelector.pack();
             this.safePathsSelector.setVisible(true);
         }
 
     }
-    public void get_value_reverse_field_list(List<>)
-    public void refine_search() {
+
+    public void refine_search
+            () {
         Object value = string_to_value(this.SearchBox.getText());
+        Vector root = ((lard_tree_model) selectFieldTree.getModel()).root;
+        int offset = 0;
         for (int i = 0; i < searchResults.size(); i++) {
-            if(searchResults.get(i))
+            SearchResult result = (SearchResult) searchResults.get(i);
+            Object currentvalue = result.get_value(root);
+            if (!value.equals(currentvalue)) {
+                root.remove(i - offset++);
+            }
         }
     }
 
-    public void search() {
+    public void search
+            () {
         Object value = string_to_value(this.SearchBox.getText());
-
+        search(value, searchResults);
     }
 
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped
+            (KeyEvent
+                    e) {
         //Maybe
     }
 
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed
+            (KeyEvent
+                    e) {
     }
 
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased
+            (KeyEvent
+                    e) {
     }
 
-   DefaultListModel safe_paths;
+    DefaultListModel safe_paths;
+
     class safe_paths_selector extends JDialog implements ActionListener {
         JList safe_list;
         JButton remove;
@@ -378,23 +416,23 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
             top.add(remove);
             safe_list = new JList();
             safe_list.setModel(safe_paths);
-            this.add(new JScrollPane(safe_list),BorderLayout.CENTER);
-            this.add(top,BorderLayout.PAGE_START);
+            this.add(new JScrollPane(safe_list), BorderLayout.CENTER);
+            this.add(top, BorderLayout.PAGE_START);
         }
 
         public void actionPerformed(ActionEvent actionEvent) {
-               if(actionEvent.getSource()==remove) {
-                  int[] indexes= safe_list.getSelectedIndices();
-                   int offset=0;
-                   for(int i:indexes) {
-                       safe_paths.remove(i-offset);
-                       offset++;
-                   }
-               }
-               if(actionEvent.getSource()== add) {
-                   String safe=JOptionPane.showInputDialog("Enter file prefix for classes which it is safe to call tostring on");
-                   safe_paths.addElement(safe);
-               }
+            if (actionEvent.getSource() == remove) {
+                int[] indexes = safe_list.getSelectedIndices();
+                int offset = 0;
+                for (int i : indexes) {
+                    safe_paths.remove(i - offset);
+                    offset++;
+                }
+            }
+            if (actionEvent.getSource() == add) {
+                String safe = JOptionPane.showInputDialog("Enter file prefix for classes which it is safe to call tostring on");
+                safe_paths.addElement(safe);
+            }
         }
     }
 }
