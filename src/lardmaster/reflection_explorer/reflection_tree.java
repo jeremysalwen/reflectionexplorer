@@ -10,7 +10,7 @@ import java.lang.reflect.Field;
  * Time: 8:00:33 PM
  * To change this template use File | Settings | File Templates.
  */
-public class lard_tree extends JTree {
+public class reflection_tree extends JTree {
     public String convertValueToText(Object value, boolean selected,
                                      boolean expanded, boolean leaf, int row,
                                      boolean hasFocus) {
@@ -25,9 +25,9 @@ public class lard_tree extends JTree {
         }
     }
     public void add_base_object(Object o) {
-        ((lard_tree_model)treeModel).add_base_object(o);
+        ((reflection_tree_model)treeModel).add_base_object(o);
     }
-    public lard_tree(lard_tree_model newModel) {
+    public reflection_tree(reflection_tree_model newModel) {
         super(newModel);
     }
 }
