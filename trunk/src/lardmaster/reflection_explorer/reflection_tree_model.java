@@ -6,7 +6,9 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Vector;
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,10 +17,10 @@ import java.util.*;
  * Time: 6:26:13 PM
  * To change this template use File | Settings | File Templates.
  */
-public class lard_tree_model implements TreeModel {
+public class reflection_tree_model implements TreeModel {
     Vector root;  //could be a Class, Field, or Object
 
-    public lard_tree_model(Object base) {
+    public reflection_tree_model(Object base) {
         root = new Vector();
         root.add(base);
     }
@@ -109,7 +111,7 @@ public class lard_tree_model implements TreeModel {
         }
         //root is a Vector
         root.add(o);
-// fireTreeNodesInserted(new TreeModelEvent(this, new Object[]{root},new int[] {root.size()}, new Object[] {o}));
+        // fireTreeNodesInserted(new TreeModelEvent(this, new Object[]{root},new int[] {root.size()}, new Object[] {o}));
         fireTreeStructureChanged(new TreeModelEvent(this, new Object[]{root}));
     }
 
