@@ -18,10 +18,10 @@ import java.util.Vector;
  * To change this template use File | Settings | File Templates.
  */
 public class reflection_tree_model implements TreeModel {
-    Vector root;  //could be a Class, Field, or Object
+    Vector<Object> root;  //could be a Class, Field, or Object
 
     public reflection_tree_model(Object base) {
-        root = new Vector();
+        root = new Vector<Object>();
         root.add(base);
     }
 
