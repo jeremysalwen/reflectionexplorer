@@ -130,12 +130,12 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
             text = getGeneratedString(value);
         }
         this.valueTextPane.setText(text);
-        Object lastcomponent = path.getLastPathComponent();
+        Object lastComponent = path.getLastPathComponent();
         Class type;
-        if (lastcomponent instanceof Field) {
-            type = ((Field) lastcomponent).getType();
+        if (lastComponent instanceof Field) {
+            type = ((Field) lastComponent).getType();
         } else {
-            type = lastcomponent.getClass();
+            type = lastComponent.getClass();
         }
         this.TypeTextArea.setText(type.getName());
     }
@@ -227,6 +227,13 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
         parent_stack.pop();
     }
 
+    /**
+     * This method converts a TreePath which is the item selected
+     * in the reflection tree into the value of the object it is referring to.
+     *
+     * @param path
+     * @return
+     */
     private Object get_value(TreePath path) {
         if (path.getLastPathComponent() instanceof Field) {
             Field f = (Field) path.getLastPathComponent();
@@ -254,12 +261,22 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
     }
 
     public void search(Object value, DefaultListModel out) {
-        Vector bases = ((reflection_tree_model) selectFieldTree.getModel()).root;
+        Vector<Object> bases = ((reflection_tree_model) selectFieldTree.getModel()).root;
         for (int i = 0; i < bases.size(); i++) {
             search(bases.get(i), value, new Stack(), out, new SearchResult(i, new Stack<Field>()));
         }
     }
 
+    /**
+     * This method searches recursively through the Object "root" for the value "value".
+     *
+     * @param root           The object to search through
+     * @param value          The value to search for
+     * @param parents        The list of parent objects, to prevent self-referential loops
+     * @param out            The list to output the results to.
+     * @param parent_history Extra stack information about the depth of the search,
+     *                       so an absolute location of the found item can be given.
+     */
     public void search(Object root, Object value, Stack parents, DefaultListModel out, SearchResult parent_history) {
         if (!(root instanceof Class)) {
             root = root.getClass();
@@ -409,6 +426,11 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
 
     DefaultListModel safe_paths;
 
+    /**
+     * This class is the dialog which pops up allowing users to specify which locations in the filesystem
+     * are considered "safe" i.e. any classes loaded from these locations will have their "toString" method
+     * called automatically, without fear of detection
+     */
     class safe_paths_selector extends JDialog implements ActionListener {
         JList safe_list;
         JButton remove;
