@@ -88,12 +88,11 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
     private JMenuItem addButton;
     private JRadioButtonMenuItem generatedToStringRadioButton;
     private JRadioButtonMenuItem classSToStringRadioButton;
-    private JSplitPane splitpane;
     private JTextArea SearchBox;
     private JButton newSearchButton;
     private JList FoundItemsList;
     private JButton refineSearchButton;
-    static Pattern quoted = Pattern.compile("\\\".*\\\"", Pattern.DOTALL);
+    static Pattern quoted = Pattern.compile("\".*\"", Pattern.DOTALL);
     private JMenuItem remove_selected;
     private safe_paths_selector safePathsSelector;
     private JMenuItem edit_safe_button;
@@ -107,8 +106,8 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
             return false;
         try {
             return NumberFormat.getNumberInstance().parse(s);
-        } catch (NumberFormatException e) {
-        } catch (ParseException e) {
+        } catch (NumberFormatException ignored) {
+        } catch (ParseException ignored) {
         }
         Matcher m = quoted.matcher(s);
         if (m.matches()) {
@@ -126,7 +125,7 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
         if (classSToStringRadioButton.isSelected() || value_class == Boolean.class || value_class == Integer.class || value_class == String.class || value_class == Long.class || value_class == Short.class || value_class == Float.class || value_class == Byte.class || value_class == Character.class) {
             text = value.toString();
         } else {
-            text = get_generated_tostring(value);
+            text = getGeneratedString(value);
         }
         this.valueTextPane.setText(text);
         Object lastcomponent = path.getLastPathComponent();
@@ -139,9 +138,9 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
         this.TypeTextArea.setText(type.getName());
     }
 
-    private String get_generated_tostring(Object o) {
+    private String getGeneratedString(Object o) {
         StringBuilder result = new StringBuilder();
-        append_generated_tostring(o, result, new Stack());
+        appendGeneratedString(o, result, new Stack());
         return result.toString();
     }
 
@@ -150,8 +149,7 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
     public static URL getClassURL(Class klass) {
         String name = klass.getName();
         name = "/" + convertClassToPath(name);
-        URL url = klass.getResource(name);
-        return url;
+        return klass.getResource(name);
     }
 
     public static String convertClassToPath(String className) {
@@ -178,7 +176,14 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
         return false;
     }
 
-    private void append_generated_tostring(Object o, StringBuilder stream, Stack parent_stack) {
+    /**
+     * Recursively prints out a string which describes the contents of object o.
+     *
+     * @param o            The object to examine
+     * @param stream       The stream to which the text is appended
+     * @param parent_stack The list of parent objects.  This is for cases in which fields reference the objects they are contained in.  By using a list of objects which this context is "contained in", we can catch self-referential loops early.
+     */
+    private void appendGeneratedString(Object o, StringBuilder stream, Stack<Object> parent_stack) {
         if (o == null) {
             stream.append("null");
             return;
@@ -206,7 +211,7 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
                     Object child_object = f.get(o);
                     int index = parent_stack.indexOf(child_object);
                     if (index == -1) {
-                        append_generated_tostring(child_object, stream, parent_stack);
+                        appendGeneratedString(child_object, stream, parent_stack);
                     } else {
                         stream.append("reference to parent ");
                         stream.append(index);
@@ -260,11 +265,11 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
         }
         parents.push(root);
         for (Class c = root.getClass(); c != null; c = c.getSuperclass()) {
+            field_loop:
             for (Field f : c.getDeclaredFields()) {
                 if (!(Modifier.isStatic(f.getModifiers()) ^ root instanceof Class)) {
                     f.setAccessible(true);
                     try {
-
                         Object checking = f.get(root);
                         if (checking != null) {
                             System.out.println(checking.getClass());
@@ -276,7 +281,7 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
                             for (int i = 0; i < Array.getLength(checking); i++) {
                                 Object o = Array.get(checking, i);
                                 if (value.equals(checking)) {
-
+                                    //TODO  Clearly our SearchResult model doesn't apply to arrays.
                                 }
                             }
                         }
@@ -290,7 +295,7 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
                         } else {
                             for (Object o : parents) {
                                 if (o == checking) {
-                                    continue;
+                                    continue field_loop;
                                 }
                             }
                             parent_history.fields.add(f);
@@ -354,7 +359,7 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
             } else {
                 int offset = 0;
                 for (int i : selected) {
-                    ((reflection_tree_model) ((reflection_tree) selectFieldTree).getModel()).root.remove(-(offset++));
+                    ((reflection_tree_model) ((reflection_tree) selectFieldTree).getModel()).root.remove(i - (offset++));
                 }
             }
         }
