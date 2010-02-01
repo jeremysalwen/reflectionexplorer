@@ -33,16 +33,17 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
     public reflection_explorer() {
         safe_paths = new DefaultListModel();
         safe_paths.addElement("/System/Library/");
+        safe_paths.addElement("/usr/lib/");
         selectFieldTree.addTreeSelectionListener(this);
         menu = new JMenuBar();
         JMenu settings = new JMenu("toString Settings");
-        ButtonGroup tostringmethod = new ButtonGroup();
+        ButtonGroup StringGenerationMethod = new ButtonGroup();
         generatedToStringRadioButton = new JRadioButtonMenuItem("Generated toString");
         classSToStringRadioButton = new JRadioButtonMenuItem("Class's toString");
         generatedToStringRadioButton.addActionListener(this);
         classSToStringRadioButton.addActionListener(this);
-        tostringmethod.add(generatedToStringRadioButton);
-        tostringmethod.add(classSToStringRadioButton);
+        StringGenerationMethod.add(generatedToStringRadioButton);
+        StringGenerationMethod.add(classSToStringRadioButton);
         generatedToStringRadioButton.setSelected(true);
         edit_safe_button = new JMenuItem("Edit \"safe\" classes");
         edit_safe_button.addActionListener(this);
@@ -92,6 +93,7 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
     private JButton newSearchButton;
     private JList FoundItemsList;
     private JButton refineSearchButton;
+    private JSplitPane splitpane;
     static Pattern quoted = Pattern.compile("\".*\"", Pattern.DOTALL);
     private JMenuItem remove_selected;
     private safe_paths_selector safePathsSelector;
@@ -140,7 +142,7 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
 
     private String getGeneratedString(Object o) {
         StringBuilder result = new StringBuilder();
-        appendGeneratedString(o, result, new Stack());
+        appendGeneratedString(o, result, new Stack<Object>());
         return result.toString();
     }
 
@@ -153,13 +155,12 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
     }
 
     public static String convertClassToPath(String className) {
-        String path = className.replace('.', '/') + ".class";
-        return path;
+        return className.replace('.', '/') + ".class";
     }
 
     static Pattern remove_URL_Junk = Pattern.compile(".*?:?(.*)", Pattern.DOTALL);
 
-    public boolean safe_to_call_tostring(Class c) {
+    public boolean safeToCall_toString(Class c) {
         URL resource = getClassURL(c);
         if (resource == null) {
             return false;
@@ -193,7 +194,7 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
             stream.append(o);
             return;
         }
-        if (safe_to_call_tostring(o_class)) {
+        if (safeToCall_toString(o_class)) {
             stream.append(o);
             return;
         }
