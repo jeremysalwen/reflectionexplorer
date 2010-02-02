@@ -10,13 +10,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Vector;
 
-/**
- * Created by IntelliJ IDEA.
- * User:
- * Date: Jun 23, 2008
- * Time: 6:26:13 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public class reflection_tree_model implements TreeModel {
     Vector<Object> root;  //could be a Class, Field, or Object
 
