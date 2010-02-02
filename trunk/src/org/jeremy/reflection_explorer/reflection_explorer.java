@@ -448,6 +448,7 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
             add = new JButton("Add safe class folder");
             add.addActionListener(this);
             JToolBar top = new JToolBar();
+            top.setFloatable(false);
             top.add(add);
             top.add(remove);
             safe_list = new JList();
