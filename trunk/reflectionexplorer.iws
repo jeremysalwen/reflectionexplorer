@@ -17,9 +17,7 @@
   <component name="ChangeListManager" verified="true">
     <list default="true" readonly="true" id="17ff3aca-9ed7-44d7-a5b8-94b7b0a5d5c2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reflectionexplorer.iws" afterPath="$PROJECT_DIR$/reflectionexplorer.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/jeremy/reflection_explorer/SearchResult.java" afterPath="$PROJECT_DIR$/src/org/jeremy/reflection_explorer/SearchResult.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/jeremy/reflection_explorer/reflection_explorer.java" afterPath="$PROJECT_DIR$/src/org/jeremy/reflection_explorer/reflection_explorer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/jeremy/reflection_explorer/reflection_tree_model.java" afterPath="$PROJECT_DIR$/src/org/jeremy/reflection_explorer/reflection_tree_model.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/jeremy/reflection_explorer/reflection_explorer.form" afterPath="$PROJECT_DIR$/src/org/jeremy/reflection_explorer/reflection_explorer.form" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -146,22 +144,22 @@
       <file leaf-file-name="reflection_explorer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/jeremy/reflection_explorer/reflection_explorer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="189" column="37" selection-start="7364" selection-end="7364" vertical-scroll-proportion="0.0">
+            <state line="42" column="61" selection-start="1635" selection-end="1635" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="reflection_tree_model.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="reflection_tree_model.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/jeremy/reflection_explorer/reflection_tree_model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="346" selection-end="346" vertical-scroll-proportion="0.070886075">
+            <state line="12" column="0" selection-start="346" selection-end="346" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="reflection_explorer.form" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="reflection_explorer.form" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/jeremy/reflection_explorer/reflection_explorer.form">
           <provider selected="true" editor-type-id="ui-designer">
             <state />
@@ -185,8 +183,9 @@
       <list>
         <option value="$PROJECT_DIR$/src/lardmaster/reflection_explorer/reflection_explorer.java" />
         <option value="$PROJECT_DIR$/src/org/jeremy/reflection_explorer/SearchResult.java" />
-        <option value="$PROJECT_DIR$/src/org/jeremy/reflection_explorer/reflection_explorer.java" />
         <option value="$PROJECT_DIR$/src/org/jeremy/reflection_explorer/reflection_tree_model.java" />
+        <option value="$PROJECT_DIR$/src/org/jeremy/reflection_explorer/reflection_explorer.java" />
+        <option value="$PROJECT_DIR$/src/org/jeremy/reflection_explorer/reflection_explorer.form" />
       </list>
     </option>
   </component>
@@ -652,19 +651,20 @@
     <frame x="-4" y="25" width="1288" height="977" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2635079" sideWeight="0.72771084" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26290515" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20532003" sideWeight="0.72771084" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26337114" sideWeight="0.7394958" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26170468" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20502432" sideWeight="0.7394958" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.04301948" sideWeight="0.72869146" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.394958" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18847539" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2489592" sideWeight="0.72771084" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967507" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1875" sideWeight="0.7394958" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1875" sideWeight="0.7394958" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25210086" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25210086" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32981315" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SVN Repositories" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32982457" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -674,7 +674,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="IntelliJad Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3298122" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18847539" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="EJB" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -701,7 +700,7 @@
     <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
     <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Documentation+cleanup." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring+documentation" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -717,6 +716,7 @@
     <MESSAGE value="Refactoring" />
     <MESSAGE value="Refactoring + bug fixing" />
     <MESSAGE value="Documentation+cleanup." />
+    <MESSAGE value="Refactoring+documentation" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -773,11 +773,6 @@
     <option name="myLastEditedConfigurable" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/org/jeremy/reflection_explorer/reflection_explorer.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/jeremy/reflection_explorer/SearchResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="34" selection-start="454" selection-end="454" vertical-scroll-proportion="0.27757126">
@@ -787,16 +782,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/jeremy/reflection_explorer/reflection_explorer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="189" column="37" selection-start="7364" selection-end="7364" vertical-scroll-proportion="0.0">
+        <state line="42" column="61" selection-start="1635" selection-end="1635" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/jeremy/reflection_explorer/reflection_tree_model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="346" selection-end="346" vertical-scroll-proportion="0.070886075">
+        <state line="12" column="0" selection-start="346" selection-end="346" vertical-scroll-proportion="0.0">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/jeremy/reflection_explorer/reflection_explorer.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
       </provider>
     </entry>
   </component>
