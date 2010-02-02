@@ -21,7 +21,7 @@ public class SearchResult {
             try {
                 base = f.get(base);
             } catch (IllegalAccessException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                e.printStackTrace();
             }
         }
         return base;

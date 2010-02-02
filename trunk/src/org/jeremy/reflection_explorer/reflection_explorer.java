@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
 public class reflection_explorer implements TreeSelectionListener, ActionListener, KeyListener {
     public reflection_explorer() {
         safe_paths = new DefaultListModel();
-        safe_paths.addElement("/System/Library/");
+        safe_paths.addElement("/System/Library/");  //Assuming we are not trying to avoid detection by system classes.
         safe_paths.addElement("/usr/lib/");
         selectFieldTree.addTreeSelectionListener(this);
         menu = new JMenuBar();
@@ -267,6 +267,8 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
         }
     }
 
+    int lol = 0;
+
     /**
      * This method searches recursively through the Object "root" for the value "value".
      *
@@ -278,9 +280,7 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
      *                       so an absolute location of the found item can be given.
      */
     public void search(Object root, Object value, Stack parents, DefaultListModel out, SearchResult parent_history) {
-        if (!(root instanceof Class)) {
-            root = root.getClass();
-        }
+
         parents.push(root);
         for (Class c = root.getClass(); c != null; c = c.getSuperclass()) {
             field_loop:
@@ -290,7 +290,7 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
                     try {
                         Object checking = f.get(root);
                         if (checking != null) {
-                            System.out.println(checking.getClass());
+                            System.out.println(lol++);
                         }
                         if (checking == null) {
                             continue;
@@ -388,6 +388,10 @@ public class reflection_explorer implements TreeSelectionListener, ActionListene
 
     }
 
+    /**
+     * This will remove all the results in the search result list which do not
+     * currently match the value entered into the search box.
+     */
     public void refine_search
             () {
         Object value = string_to_value(this.SearchBox.getText());
