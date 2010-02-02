@@ -29,7 +29,9 @@
             <children>
               <toolbar id="2ee0">
                 <constraints border-constraint="North"/>
-                <properties/>
+                <properties>
+                  <floatable value="false"/>
+                </properties>
                 <border type="none"/>
                 <children>
                   <component id="54c19" class="javax.swing.JTextArea" binding="SearchBox">
