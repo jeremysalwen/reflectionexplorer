@@ -1,0 +1,20 @@
+This is a program which uses the Java reflection API to allow you to examine the contents of classes at runtime.  It has a simple GUI which allows you to examine the structure and content of any object in the form of a tree.
+
+I originally wrote this program to help reverse engineer the client of an obfuscated online game by discovering the obfuscated variable names.  Because of this, one of the priorities of this program is to not be detectable by the objects it is inspecting.  It will only interact with the classes it inspects (by calling toString) if it has determined that it is safe to do so.
+
+The layout of the program is simple.  To the left is the tree, which represents the structure of the data you are examining, with fields inside objects represented as child nodes.  The roots of the tree are the different objects you are examining.  The program can examine multiple sources at the same time, both objects and classes.  In order to add an object as a root node, you will need to add it programmatically.  Logically, only static classes can be added at runtime, but it is still possible to explore an object if it is referenced from inside a static class. To add a class as a root node, you may type in the qualified name of the class, and you will be able to explore its static fields as a tree.
+
+When you select an object in the tree, the two boxes in the middle will provide information on the object it represents.  The lower box will indicate the class of the selected item, and the upper box will indicate its value.  There are two options for displaying its value, one which relies on the object's actual "toString()" method, and one which automatically generates a string representation by recursively examining its contents.
+
+Each method has its downsides:  Calling the objects toString method could alert the program that it is being tampered with.  Generating a toString method can result in massive strings being produced due to references to large objects.  Because of the java memory model, everything is a pointer, so there is no distinction between an object "containing" another object, and "referencing" it.  This means that depending on the class, a lot of extraneous information might be included.  It also seems that pointer loops might cause a problem, but it checks for those, and stops it from trying to generate an infinite length string.  Even with these checks, it will sometimes try to generate extremely long strings, which will freeze up the gui until it throws a memory exception for trying to build a huge string.
+
+The gui offers two modes.  In one mode, the objects toString method is called whenever it is selected.  In the other mode, only certain objects are considered "safe" to call toString on.  The "safety" of a class is determined based on where it was loaded from.  The settings for which classes are "safe" can be modified using a menu item.  If an "unsafe" object is selected, it recursively generates a string, but will still call the toString methods for safe objects which are referenced by the unsafe one.  When in this mode, it is still an option to call the toString method of an "unsafe" object on a case by case basis by using the aptly named button in the bottom middle of the window.
+
+
+On the right hand side of the application is the GUI components for searching for values.  I am mostly done with this feature, but it seems to have issues with efficiency (which should be fixable).  When it is completed, it will be able to search for any fields containing a specified value.
+
+
+I plan on adding real time updating of values displayed (or at least constant refreshing) after the searching ability is finished.
+
+
+To run the program, you can either download the source from svn and compile it using Intellij Idea (or any Java compiler), or download the jar, which you can directly run.
